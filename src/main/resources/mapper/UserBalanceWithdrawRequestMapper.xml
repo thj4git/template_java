@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thj.mapper.UserBalanceWithdrawRequestMapper">
+  <resultMap id="BaseResultMap" type="com.thj.model.UserBalanceWithdrawRequest">
+    <id column="bwr_id" jdbcType="BIGINT" property="id" />
+    <result column="bwr_user_id" jdbcType="BIGINT" property="userId" />
+    <result column="bwr_num" jdbcType="INTEGER" property="num" />
+    <result column="bwr_bank_id" jdbcType="BIGINT" property="bankId" />
+    <result column="bwr_arrive_type" jdbcType="INTEGER" property="arriveType" />
+    <result column="bwr_arrive_account" jdbcType="VARCHAR" property="arriveAccount" />
+    <result column="bwr_arrive_account_name" jdbcType="VARCHAR" property="arriveAccountName" />
+    <result column="bwr_arrive_tel" jdbcType="VARCHAR" property="arriveTel" />
+    <result column="bwr_audit_status" jdbcType="INTEGER" property="auditStatus" />
+    <result column="bwr_audit_explain" jdbcType="VARCHAR" property="auditExplain" />
+    <result column="bwr_admin_user_id" jdbcType="BIGINT" property="adminUserId" />
+    <result column="bwr_tax" jdbcType="INTEGER" property="tax" />
+    <result column="bwr_pay_num" jdbcType="INTEGER" property="payNum" />
+    <result column="bwr_pay_status" jdbcType="INTEGER" property="payStatus" />
+    <result column="bwr_pay_memo" jdbcType="VARCHAR" property="payMemo" />
+    <result column="bwr_last_time" jdbcType="BIGINT" property="lastTime" />
+    <result column="bwr_create_time" jdbcType="BIGINT" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bwr_id, bwr_user_id, bwr_num, bwr_bank_id, bwr_arrive_type, bwr_arrive_account, bwr_arrive_account_name, 
+    bwr_arrive_tel, bwr_audit_status, bwr_audit_explain, bwr_admin_user_id, bwr_tax, 
+    bwr_pay_num, bwr_pay_status, bwr_pay_memo, bwr_last_time, bwr_create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lg_crowd_article.lg_user_balance_withdraw_request_t
+    where bwr_id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from lg_crowd_article.lg_user_balance_withdraw_request_t
+    where bwr_id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.thj.model.UserBalanceWithdrawRequest">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lg_crowd_article.lg_user_balance_withdraw_request_t (bwr_user_id, bwr_num, bwr_bank_id, 
+      bwr_arrive_type, bwr_arrive_account, bwr_arrive_account_name, 
+      bwr_arrive_tel, bwr_audit_status, bwr_audit_explain, 
+      bwr_admin_user_id, bwr_tax, bwr_pay_num, 
+      bwr_pay_status, bwr_pay_memo, bwr_last_time, 
+      bwr_create_time)
+    values (#{userId,jdbcType=BIGINT}, #{num,jdbcType=INTEGER}, #{bankId,jdbcType=BIGINT}, 
+      #{arriveType,jdbcType=INTEGER}, #{arriveAccount,jdbcType=VARCHAR}, #{arriveAccountName,jdbcType=VARCHAR}, 
+      #{arriveTel,jdbcType=VARCHAR}, #{auditStatus,jdbcType=INTEGER}, #{auditExplain,jdbcType=VARCHAR}, 
+      #{adminUserId,jdbcType=BIGINT}, #{tax,jdbcType=INTEGER}, #{payNum,jdbcType=INTEGER}, 
+      #{payStatus,jdbcType=INTEGER}, #{payMemo,jdbcType=VARCHAR}, #{lastTime,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.thj.model.UserBalanceWithdrawRequest">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lg_crowd_article.lg_user_balance_withdraw_request_t
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        bwr_user_id,
+      </if>
+      <if test="num != null">
+        bwr_num,
+      </if>
+      <if test="bankId != null">
+        bwr_bank_id,
+      </if>
+      <if test="arriveType != null">
+        bwr_arrive_type,
+      </if>
+      <if test="arriveAccount != null">
+        bwr_arrive_account,
+      </if>
+      <if test="arriveAccountName != null">
+        bwr_arrive_account_name,
+      </if>
+      <if test="arriveTel != null">
+        bwr_arrive_tel,
+      </if>
+      <if test="auditStatus != null">
+        bwr_audit_status,
+      </if>
+      <if test="auditExplain != null">
+        bwr_audit_explain,
+      </if>
+      <if test="adminUserId != null">
+        bwr_admin_user_id,
+      </if>
+      <if test="tax != null">
+        bwr_tax,
+      </if>
+      <if test="payNum != null">
+        bwr_pay_num,
+      </if>
+      <if test="payStatus != null">
+        bwr_pay_status,
+      </if>
+      <if test="payMemo != null">
+        bwr_pay_memo,
+      </if>
+      <if test="lastTime != null">
+        bwr_last_time,
+      </if>
+      <if test="createTime != null">
+        bwr_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="bankId != null">
+        #{bankId,jdbcType=BIGINT},
+      </if>
+      <if test="arriveType != null">
+        #{arriveType,jdbcType=INTEGER},
+      </if>
+      <if test="arriveAccount != null">
+        #{arriveAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveAccountName != null">
+        #{arriveAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveTel != null">
+        #{arriveTel,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditExplain != null">
+        #{auditExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="adminUserId != null">
+        #{adminUserId,jdbcType=BIGINT},
+      </if>
+      <if test="tax != null">
+        #{tax,jdbcType=INTEGER},
+      </if>
+      <if test="payNum != null">
+        #{payNum,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="payMemo != null">
+        #{payMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="lastTime != null">
+        #{lastTime,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.thj.model.UserBalanceWithdrawRequest">
+    update lg_crowd_article.lg_user_balance_withdraw_request_t
+    <set>
+      <if test="userId != null">
+        bwr_user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="num != null">
+        bwr_num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="bankId != null">
+        bwr_bank_id = #{bankId,jdbcType=BIGINT},
+      </if>
+      <if test="arriveType != null">
+        bwr_arrive_type = #{arriveType,jdbcType=INTEGER},
+      </if>
+      <if test="arriveAccount != null">
+        bwr_arrive_account = #{arriveAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveAccountName != null">
+        bwr_arrive_account_name = #{arriveAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveTel != null">
+        bwr_arrive_tel = #{arriveTel,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null">
+        bwr_audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditExplain != null">
+        bwr_audit_explain = #{auditExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="adminUserId != null">
+        bwr_admin_user_id = #{adminUserId,jdbcType=BIGINT},
+      </if>
+      <if test="tax != null">
+        bwr_tax = #{tax,jdbcType=INTEGER},
+      </if>
+      <if test="payNum != null">
+        bwr_pay_num = #{payNum,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null">
+        bwr_pay_status = #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="payMemo != null">
+        bwr_pay_memo = #{payMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="lastTime != null">
+        bwr_last_time = #{lastTime,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        bwr_create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where bwr_id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.thj.model.UserBalanceWithdrawRequest">
+    update lg_crowd_article.lg_user_balance_withdraw_request_t
+    set bwr_user_id = #{userId,jdbcType=BIGINT},
+      bwr_num = #{num,jdbcType=INTEGER},
+      bwr_bank_id = #{bankId,jdbcType=BIGINT},
+      bwr_arrive_type = #{arriveType,jdbcType=INTEGER},
+      bwr_arrive_account = #{arriveAccount,jdbcType=VARCHAR},
+      bwr_arrive_account_name = #{arriveAccountName,jdbcType=VARCHAR},
+      bwr_arrive_tel = #{arriveTel,jdbcType=VARCHAR},
+      bwr_audit_status = #{auditStatus,jdbcType=INTEGER},
+      bwr_audit_explain = #{auditExplain,jdbcType=VARCHAR},
+      bwr_admin_user_id = #{adminUserId,jdbcType=BIGINT},
+      bwr_tax = #{tax,jdbcType=INTEGER},
+      bwr_pay_num = #{payNum,jdbcType=INTEGER},
+      bwr_pay_status = #{payStatus,jdbcType=INTEGER},
+      bwr_pay_memo = #{payMemo,jdbcType=VARCHAR},
+      bwr_last_time = #{lastTime,jdbcType=BIGINT},
+      bwr_create_time = #{createTime,jdbcType=BIGINT}
+    where bwr_id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

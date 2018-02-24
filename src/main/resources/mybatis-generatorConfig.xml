@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+ "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+	<!-- 引入连接数据库jar包的位置 -->
+	<!-- <classPathEntry location="F:\java\workspace\driverJAR\mysql-connector-java-5.1.39\mysql-connector-java-5.1.39-bin.jar" 
+		/> -->
+	<context id="context1">
+		<commentGenerator>
+			<property name="suppressDate" value="false" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.0.239:3306" userId="root"
+			password="Thj_2017" />
+
+		<javaModelGenerator targetPackage="com.thj.model"
+			targetProject="src/main/java" />
+		<sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources" />
+		<javaClientGenerator targetPackage="com.thj.mapper"
+			targetProject="src/main/java" type="XMLMAPPER" />
+
+
+
+		<table catalog="lg_crowd_article" schema="lg_crowd_article"
+			tableName="lg_user_balance_withdraw_request_t" domainObjectName="UserBalanceWithdrawRequest"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="bwr_id" sqlStatement="Mysql"
+				identity="true" />
+			<!-- 去除前缀 -->
+			<columnRenamingRule searchString="bwr_"
+				replaceString="" />
+		</table>
+
+
+
+
+
+
+
+	</context>
+</generatorConfiguration>
+		

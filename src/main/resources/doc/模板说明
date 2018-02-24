@@ -1,0 +1,12 @@
+聚合框架:
+1.mybatis(a.支持事物 b.指定.xml文件  配置在application启动类注解)[Application.java]
+2.log4j(a.移除sbweb的原本日志依赖 b.移除sb的日志依赖  c.添加log4j日志依赖,并且添加日志配置文件log4j.properties)[pom.xml]
+框架调整:
+1.将application.properties文件替换为application.yml
+2.更改返回数据默认为application/json 并且支持自动剔除对象内的null数据字段[Application.java]
+3.druid连接池配置,并且将连接池由原来的hikari改为druid [application.yml]
+web项目建议:
+1.将所有公共参数放置于http的head(如token userId 等等)
+2.get和post接口进行分割
+3.尽量使用application/x-www-form-urlencoded(此方式传入的的参数在request内可以多次获取)
+4.复杂数据使用application/json(由于数据在body内,所以只能获取一次,如果入参需要复用,需注意在第一次获取数据时进行数据缓存)
